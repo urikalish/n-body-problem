@@ -1,0 +1,45 @@
+{
+  "name": "n-body-problem",
+  "description": "n-body-problem",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Uri Kalish <uri.kalish@gmail.com> (https://github.com/urikalish)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urikalish/n-body-problem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/urikalish/n-body-problem/issues"
+  },
+  "homepage": "https://github.com/urikalish/n-body-problem#readme",
+  "scripts": {
+    "clean": "rimraf out-tsc && rimraf dist",
+    "prettier": "prettier --write --loglevel warn \"src/**/*.ts\"",
+    "eslint": "eslint src/**/*.ts",
+    "tsc": "tsc",
+    "rollup": "rollup -c rollup.config.js --no-treeshake",
+    "xcopy": "xcopy .\\public\\ .\\dist\\ /s /y /q",
+    "build": "yarn clean && yarn prettier && yarn eslint && yarn tsc && yarn rollup && yarn xcopy",
+    "test": "echo \"No test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn build",
+      "pre-push": ""
+    }
+  },
+  "devDependencies": {
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "eslint": "^8.11.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.6.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.1",
+    "typescript": "^4.6.2",
+    "web-vitals": "^2.1.4"
+  }
+}
