@@ -29,6 +29,7 @@ export class Board {
         if (!this.ctx) return;
         const ctx = this.ctx;
         bodies.forEach((b: Body) => {
+            b.b = Math.min(255, b.vx ** 2 + b.vy ** 2);
             ctx.fillStyle = `rgb(${b.r},${b.g},${b.b})`;
             ctx.fillRect(b.x, b.y, b.s, b.s);
         });
