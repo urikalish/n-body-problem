@@ -5,6 +5,7 @@ export class Board {
     public ctx: CanvasRenderingContext2D | null = null;
     public cw = 0;
     public ch = 0;
+    public max = 1;
     // public id: ImageData | null = null;
 
     init(width: number, height: number) {
@@ -28,8 +29,11 @@ export class Board {
     draw(bodies: Body[]) {
         if (!this.ctx) return;
         const ctx = this.ctx;
+        let m = 0;
         bodies.forEach((b: Body) => {
-            b.b = Math.min(255, b.vx ** 2 + b.vy ** 2);
+            m = b.vx ** 2 + b.vy ** 2;
+            this.max = Math.max(this.max, m);
+            b.b = Math.min(255, 128 + (128 * m) / this.max);
             ctx.fillStyle = `rgb(${b.r},${b.g},${b.b})`;
             ctx.fillRect(b.x, b.y, b.s, b.s);
         });
